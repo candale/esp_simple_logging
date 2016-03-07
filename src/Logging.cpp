@@ -13,7 +13,7 @@ boolean Logging::IsInitialized()
 
 void Logging::Debug(const char* message, ...)
 {
-    if(_level >= LOG_LEVEL_DEBUG)
+    if(_level <= LOG_LEVEL_DEBUG)
     {
         char buffer[MAX_BUFFER_SIZE];
         va_list args;
@@ -28,7 +28,7 @@ void Logging::Debug(const char* message, ...)
 
 void Logging::Info(const char* message, ...)
 {
-    if(_level >= LOG_LEVEL_INFO)
+    if(_level <= LOG_LEVEL_INFO)
     {
         char buffer[MAX_BUFFER_SIZE];
         va_list args;
@@ -43,7 +43,7 @@ void Logging::Info(const char* message, ...)
 
 void Logging::Warn(const char* message, ...)
 {
-    if(_level >= LOG_LEVEL_WARN)
+    if(_level <= LOG_LEVEL_WARN)
     {
         char buffer[MAX_BUFFER_SIZE];
         va_list args;
@@ -58,7 +58,7 @@ void Logging::Warn(const char* message, ...)
 
 void Logging::Error(const char* message, ...)
 {
-    if(_level >= LOG_LEVEL_ERROR)
+    if(_level <= LOG_LEVEL_ERROR)
     {
         char buffer[MAX_BUFFER_SIZE];
         va_list args;
