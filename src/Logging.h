@@ -15,6 +15,8 @@
 
 #define MAX_BUFFER_SIZE 528
 
+class Logger;
+
 class Logging
 {
 private:
@@ -25,6 +27,28 @@ private:
 public:
     void Init(uint8_t level, Print* printer);
     boolean IsInitialized();
+
+    Logger* getLogger(String file_name);
+
+    void Debug(const char* message, ...);
+    void Info(const char* message, ...);
+    void Warn(const char* message, ...);
+    void Error(const char* message, ...);
+};
+
+
+class Logger
+{
+private:
+    String file_name;
+    Logging* logger;
+
+public:
+    Logger(String file_name, Logging* logger)
+    {
+        this->file_name = file_name;
+        this->logger = logger;
+    }
 
     void Debug(const char* message, ...);
     void Info(const char* message, ...);

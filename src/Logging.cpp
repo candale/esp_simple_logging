@@ -11,6 +11,11 @@ boolean Logging::IsInitialized()
     return _printer != 0;
 }
 
+Logger* Logging::getLogger(String file_name)
+{
+    return new Logger(file_name, this);
+}
+
 void Logging::Debug(const char* message, ...)
 {
     if(_level <= LOG_LEVEL_DEBUG)
@@ -72,3 +77,36 @@ void Logging::Error(const char* message, ...)
 }
 
 Logging Log = Logging();
+
+
+void Logger::Debug(const char* message, ...)
+{
+    va_list args;
+    va_start(args, message);
+    logger->Debug((file_name + " :: " + String(message)).c_str(), args);
+    va_end(args);
+}
+
+void Logger::Info(const char* message, ...)
+{
+    va_list args;
+    va_start(args, message);
+    logger->Info((file_name + " :: " + String(message)).c_str(), args);
+    va_end(args);
+}
+
+void Logger::Warn(const char* message, ...)
+{
+    va_list args;
+    va_start(args, message);
+    logger->Warn((file_name + " :: " + String(message)).c_str(), args);
+    va_end(args);
+}
+
+void Logger::Error(const char* message, ...)
+{
+    va_list args;
+    va_start(args, message);
+    logger->Error((file_name + " :: " + String(message)).c_str(), args);
+    va_end(args);
+}
